@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+.env.example
+node_modules
+yarn.lock
+dist
+.eslintrc.mjs
+eslint.config.mjs
