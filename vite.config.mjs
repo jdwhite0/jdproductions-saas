@@ -4,7 +4,9 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const APP_BASE_URL = `${env.VITE_APP_BASE_URL}`;
+  // Default to root "/" so assets resolve correctly when VITE_APP_BASE_URL is unset
+  // (an unset value previously became the string "undefined", breaking all asset paths → white screen)
+  const APP_BASE_URL = env.VITE_APP_BASE_URL && env.VITE_APP_BASE_URL !== 'undefined' ? env.VITE_APP_BASE_URL : '/';
 
   return {
     server: {
