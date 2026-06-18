@@ -16,19 +16,21 @@ export function buildPalette() {
   const disabledBackground = '#E4E1E6'; // Hosting/neutral/90 - surface container highest
 
   const lightPalette = {
+    // JD Productions — navy primary (buttons, nav, focus)
     primary: {
-      lighter: '#E0E0FF', // Hosting/primary/90 - primary container / primary fixed
-      light: '#BDC2FF', // Hosting/primary/80 - primary fixed dim
-      main: '#606BDF', // Hosting/primary/40 - primary
-      dark: '#3944B8', // Hosting/primary/30 - on primary fixed variant
-      darker: '#000668' // Hosting/primary/10 - on primary container / on primary fixed
+      lighter: '#E3E9F0', // palest navy tint — containers
+      light: '#33597A', // hover / lighter navy
+      main: '#002244', // JD navy — primary
+      dark: '#001B36', // pressed
+      darker: '#001022' // deepest
     },
+    // JD Productions — gold accent
     secondary: {
-      lighter: '#E0E0FF', // Hosting/secondary/90 - secondary container / secondary fixed
-      light: '#C3C4E4', // Hosting/secondary/80 - secondary fixed dim
-      main: secondaryMain, // Hosting/secondary/40 - secondary
-      dark: '#43455F', // Hosting/secondary/30 - on secondary fixed variant
-      darker: '#171A31' // Hosting/secondary/10 - on secondary container / on secondary fixed
+      lighter: '#FFF3CC', // palest gold tint
+      light: '#FFD968', // light gold
+      main: '#FFC20E', // JD gold — accent
+      dark: '#E0A500', // gold-2
+      darker: '#A06F00' // gold-ink
     },
     error: {
       lighter: '#FFEDEA', // error/90 - error container / error fixed

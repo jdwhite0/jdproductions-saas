@@ -1,11 +1,11 @@
 {
-    "brandName": "SaasAble",
+    "brandName": "JD Productions",
     "company": {
-        "name": "Phoenixcoded",
-        "url": "https://phoenixcoded.authordesk.app/"
+        "name": "JD Productions",
+        "url": "https://jdproductions.io"
     },
     "logo": {
-        "main":"",
-        "logoIcon": ""
+        "main": "/jdp-logo.png",
+        "logoIcon": "/jdp-icon-gold.png"
     }
 }

@@ -5,7 +5,7 @@ import { ThemeFonts } from '@/config';
 
 export default function typography() {
   return {
-    fontFamily: ThemeFonts.FONT_ARCHIVO,
+    fontFamily: ThemeFonts.FONT_INTER,
     letterSpacing: 0,
 
     // heading - h1
