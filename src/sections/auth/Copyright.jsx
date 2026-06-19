@@ -29,11 +29,11 @@ export default function Copyright() {
           © {currentYear} {branding.brandName}
         </Typography>
         <Divider orientation="vertical" flexItem sx={copyrightSX} />
-        <Link {...linkProps} href="https://saasable.io/privacy-policy">
+        <Link {...linkProps} href="https://jdproductions.io/privacy.html">
           Privacy Policy
         </Link>
         <Divider orientation="vertical" flexItem />
-        <Link {...linkProps} href="https://mui.com/store/terms/">
+        <Link {...linkProps} href="https://jdproductions.io/terms.html">
           Terms & Conditions
         </Link>
       </Stack>

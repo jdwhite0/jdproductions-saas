@@ -2,9 +2,11 @@
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
+// @third-party
+import { UserButton } from '@clerk/clerk-react';
+
 // @project
 import Notification from './Notification';
-import Profile from './Profile';
 import SearchBar from './SearchBar';
 import ThemeModeSwitcher from './ThemeModeSwitcher';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -22,7 +24,7 @@ export default function HeaderContent() {
           <SearchBar />
           <ThemeModeSwitcher />
           <Notification />
-          <Profile />
+          <UserButton afterSignOutUrl="/auth/login" appearance={{ elements: { avatarBox: { width: 36, height: 36 } } }} />
         </Stack>
       </Stack>
     </>

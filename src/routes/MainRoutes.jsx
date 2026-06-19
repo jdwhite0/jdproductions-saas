@@ -1,37 +1,69 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 
 // @project
 import Loadable from '@/components/Loadable';
 import AdminLayout from '@/layouts/AdminLayout';
+import RoleGuard from '@/routes/RoleGuard';
 
-// Dashboard
-const AnalyticsPage = Loadable(lazy(() => import('@/views/admin/dashboard')));
+// Member views
+const Overview = Loadable(lazy(() => import('@/views/member/overview')));
+const Products = Loadable(lazy(() => import('@/views/member/products')));
+const TheMode = Loadable(lazy(() => import('@/views/member/the-mode')));
+const Services = Loadable(lazy(() => import('@/views/member/services')));
+const Concierge = Loadable(lazy(() => import('@/views/member/concierge')));
+const Billing = Loadable(lazy(() => import('@/views/member/billing')));
+const EmailPreferences = Loadable(lazy(() => import('@/views/member/email-preferences')));
+const Account = Loadable(lazy(() => import('@/views/member/account')));
 
-// Utils
-const ColorPage = Loadable(lazy(() => import('@/views/components/utils/colors')));
-const ShadowPage = Loadable(lazy(() => import('@/views/components/utils/shadow')));
-const TypographyPage = Loadable(lazy(() => import('@/views/components/utils/typography')));
+// Founder / admin views
+const FounderOverview = Loadable(lazy(() => import('@/views/founder/overview')));
+const FounderAccounts = Loadable(lazy(() => import('@/views/founder/accounts')));
+const FounderSubscriptions = Loadable(lazy(() => import('@/views/founder/subscriptions')));
+const FounderSystem = Loadable(lazy(() => import('@/views/founder/system')));
 
-// Sample Page
-const SamplePage = Loadable(lazy(() => import('@/views/admin/sample-page')));
+// Auth gate — only signed-in users reach the dashboard; others go to /auth/login
+function ProtectedAdmin() {
+  return (
+    <>
+      <SignedIn>
+        <AdminLayout />
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
+  );
+}
 
 const MainRoutes = {
   path: '/',
-  element: <AdminLayout />,
+  element: <ProtectedAdmin />,
   children: [
     { index: true, element: <Navigate to="/dashboard" replace /> },
 
-    { path: 'dashboard', element: <AnalyticsPage /> },
+    // Member
+    { path: 'dashboard', element: <Overview /> },
+    { path: 'products', element: <Products /> },
+    { path: 'the-mode', element: <TheMode /> },
+    { path: 'services', element: <Services /> },
+    { path: 'concierge', element: <Concierge /> },
+    { path: 'billing', element: <Billing /> },
+    { path: 'email-preferences', element: <EmailPreferences /> },
+    { path: 'account', element: <Account /> },
+
+    // Founder / admin (role-gated)
     {
-      path: 'utils',
+      path: 'admin',
+      element: <RoleGuard />,
       children: [
-        { path: 'color', element: <ColorPage /> },
-        { path: 'shadow', element: <ShadowPage /> },
-        { path: 'typography', element: <TypographyPage /> }
+        { index: true, element: <FounderOverview /> },
+        { path: 'accounts', element: <FounderAccounts /> },
+        { path: 'subscriptions', element: <FounderSubscriptions /> },
+        { path: 'system', element: <FounderSystem /> }
       ]
-    },
-    { path: 'sample-page', element: <SamplePage /> }
+    }
   ]
 };
 

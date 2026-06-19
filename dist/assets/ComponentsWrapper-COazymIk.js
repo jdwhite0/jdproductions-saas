@@ -1,1 +1,0 @@
-import{j as s,d as n,T as r,P as t}from"./mui-CiBgYNcC.js";function e({children:t,title:e}){return s.jsxs(n,{sx:{gap:{xs:2,sm:4}},children:[s.jsx(n,{sx:{py:1.25,justifyContent:"center"},children:s.jsx(r,{variant:"h6",children:e})}),t]})}e.propTypes={children:t.any,title:t.string};export{e as C};

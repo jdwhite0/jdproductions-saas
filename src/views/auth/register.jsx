@@ -1,16 +1,38 @@
 // @mui
-import Divider from '@mui/material/Divider';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
+// @third-party
+import { SignUp } from '@clerk/clerk-react';
 
 // @project
-import RouterLink from '@/components/Link';
-import { SocialTypes } from '@/enum';
-import AuthRegister from '@/sections/auth/AuthRegister';
-import AuthSocial from '@/sections/auth/AuthSocial';
 import Copyright from '@/sections/auth/Copyright';
+
+const clerkAppearance = {
+  variables: {
+    colorPrimary: '#002244',
+    colorText: '#1B1B1F',
+    fontFamily: "'Inter', sans-serif",
+    borderRadius: '10px'
+  },
+  elements: {
+    rootBox: { width: '100%' },
+    cardBox: { width: '100%', boxShadow: 'none' },
+    card: { boxShadow: 'none', border: 'none', padding: 0, background: 'transparent' },
+    headerTitle: { display: 'none' },
+    headerSubtitle: { display: 'none' },
+    footer: { display: 'none' },
+    formButtonPrimary: {
+      backgroundColor: '#002244',
+      textTransform: 'none',
+      fontSize: '15px',
+      fontWeight: 600,
+      '&:hover': { backgroundColor: '#001B36' }
+    },
+    socialButtonsBlockButton: { borderRadius: '10px' }
+  }
+};
 
 /***************************  AUTH - REGISTER  ***************************/
 
@@ -18,34 +40,16 @@ export default function Register() {
   return (
     <Stack sx={{ height: 1, alignItems: 'center', justifyContent: 'space-between', gap: 3 }}>
       <Box sx={{ width: 1, maxWidth: 458 }}>
-        <Stack sx={{ gap: { xs: 1, sm: 1.5 }, textAlign: 'center', mb: { xs: 3, sm: 8 } }}>
-          <Typography variant="h1">Sign Up</Typography>
+        <Stack sx={{ gap: { xs: 1, sm: 1.5 }, textAlign: 'center', mb: { xs: 3, sm: 5 } }}>
+          <Typography variant="h1">Create your account</Typography>
           <Typography variant="body1" color="text.secondary">
-            Sign Up for free. No credit card required.
+            Get started with JD Productions.
           </Typography>
         </Stack>
 
-        {/* Social login buttons */}
-        <AuthSocial type={SocialTypes.HORIZONTAL} />
-
-        <Divider sx={{ my: { xs: 4, sm: 5 } }}>
-          <Typography variant="body2" color="text.secondary">
-            or continue with email
-          </Typography>
-        </Divider>
-
-        {/* Login form */}
-        <AuthRegister />
-
-        <Typography variant="body2" color="text.secondary" sx={{ mt: { xs: 2, sm: 3 } }}>
-          Already have an account?{' '}
-          <Link component={RouterLink} underline="hover" variant="subtitle2" to="/auth/login" sx={{ '&:hover': { color: 'primary.dark' } }}>
-            Sign In
-          </Link>
-        </Typography>
+        <SignUp routing="hash" signInUrl="/auth/login" fallbackRedirectUrl="/dashboard" appearance={clerkAppearance} />
       </Box>
 
-      {/* Copyright section*/}
       <Copyright />
     </Stack>
   );

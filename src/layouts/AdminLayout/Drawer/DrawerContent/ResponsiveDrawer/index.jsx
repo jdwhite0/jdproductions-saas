@@ -3,12 +3,15 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 // @project
-import menuItems from '@/menu';
+import { getMenuItems } from '@/menu';
+import useRole from '@/hooks/useRole';
 import NavGroup from './NavGroup';
 
 /***************************  DRAWER CONTENT - RESPONSIVE DRAWER  ***************************/
 
 export default function ResponsiveDrawer() {
+  const { isAdmin } = useRole();
+  const menuItems = getMenuItems(isAdmin);
   const navGroups = menuItems.items.map((item, index) => {
     switch (item.type) {
       case 'group':
