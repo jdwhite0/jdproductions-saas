@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useUser } from '@clerk/clerk-react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -19,12 +20,34 @@ const CHANNELS = [
 ];
 
 export default function EmailPreferences() {
-  const [prefs, setPrefs] = useState(Object.fromEntries(CHANNELS.map((c) => [c.id, c.def])));
+  const { user, isLoaded } = useUser();
+  const [prefs, setPrefs] = useState(null);
+  const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  // Load persisted prefs from Clerk metadata
+  useEffect(() => {
+    if (!isLoaded) return;
+    const stored = user?.unsafeMetadata?.emailPrefs;
+    setPrefs(stored && typeof stored === 'object'
+      ? { ...Object.fromEntries(CHANNELS.map((c) => [c.id, c.def])), ...stored }
+      : Object.fromEntries(CHANNELS.map((c) => [c.id, c.def])));
+  }, [isLoaded, user]);
+
   const toggle = (id) => setPrefs((p) => ({ ...p, [id]: !p[id] }));
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      await user.update({ unsafeMetadata: { ...user.unsafeMetadata, emailPrefs: prefs } });
+      setSaved(true);
+    } finally { setSaving(false); }
+  };
+
+  if (!prefs) return null;
   return (
     <Box>
-      <PageHead eyebrow="Email Preferences" title="Choose what lands in your inbox." subtitle="Control marketing and intelligence emails. Account and billing notices are always on." />
+      <PageHead eyebrow="Email Preferences" title="Choose what lands in your inbox." subtitle="Preferences save to your account and apply across all JD Productions emails. Account and billing notices are always on." />
       <Card variant="outlined" sx={{ borderRadius: 3, maxWidth: 720 }}>
         <CardContent>
           {CHANNELS.map((c, i) => (
@@ -39,10 +62,12 @@ export default function EmailPreferences() {
               </Stack>
             </Box>
           ))}
-          <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => setSaved(true)}>Save preferences</Button>
+          <Button variant="contained" color="primary" sx={{ mt: 2 }} disabled={saving} onClick={save}>
+            {saving ? 'Saving…' : 'Save preferences'}
+          </Button>
         </CardContent>
       </Card>
-      <Snackbar open={saved} autoHideDuration={2500} onClose={() => setSaved(false)} message="Preferences saved" />
+      <Snackbar open={saved} autoHideDuration={2500} onClose={() => setSaved(false)} message="Preferences saved to your account" />
     </Box>
   );
 }

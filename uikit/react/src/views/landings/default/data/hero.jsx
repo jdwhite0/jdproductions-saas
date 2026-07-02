@@ -1,48 +1,36 @@
 // @mui
-import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import { SECTION_PATH } from '@/path';
 
 export const hero = {
   chip: {
     label: (
       <>
         <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          One Kit, Endless
+          The rail for the
         </Typography>
         <Chip
           label={
             <Typography variant="caption" sx={{ color: 'primary.main' }}>
-              Possibilities
+              creator economy
             </Typography>
           }
           sx={{ height: 24, bgcolor: 'primary.lighter', mr: -1, ml: 0.75, '& .MuiChip-label': { px: 1.25 } }}
-          icon={
-            <CardMedia
-              component="img"
-              image="/assets/images/shared/celebration.svg"
-              sx={{ width: 16, height: 16 }}
-              alt="celebration"
-              loading="lazy"
-            />
-          }
         />
       </>
     )
   },
-  headLine: 'Multipurpose UI Kit and Dashboard Template',
-  captionLine: 'Design marketing pages and powerful admin dashboards with ease using our UI Kit, built following Material 3 guidelines.',
-  primaryBtn: { children: 'Explore Blocks', href: SECTION_PATH },
-  videoSrc: 'https://d2elhhoq00m1pj.cloudfront.net/saasable-intro.mp4',
-  videoThumbnail: '/assets/videos/thumbnails/intro-thumbnail.png',
+  headLine: 'Spend value. Move creativity.',
+  captionLine:
+    'JDP Pay is the simplest way to move JDP on Base — the exchange layer that lets creativity flow through the network. No seed phrase. No gas headaches. Just participation.',
+  primaryBtn: { children: 'Open ACCESS Wallet', href: 'https://jdptoken.com/dashboard/', target: '_blank' },
+  videoSrc: '',
+  videoThumbnail: 'https://jdptoken.com/jdp-card-3d.png',
   listData: [
-    { image: '/assets/images/shared/react.svg', title: 'React 19' },
-    { image: '/assets/images/shared/next-js.svg', title: 'Next.js' },
-    { image: '/assets/images/shared/material-ui.svg', title: 'Material UI v7' },
-    { image: '/assets/images/shared/typescript.svg', title: 'TypeScript' },
-    { image: '/assets/images/shared/javascript.svg', title: 'JavaScript' },
-    { image: '/assets/images/shared/m3.svg', title: 'Material 3' },
-    { image: '/assets/images/shared/figma.svg', title: 'Figma' }
+    { image: 'https://jdptoken.com/jdp-coin.png', title: 'Built on Base' },
+    { image: 'https://jdptoken.com/jdp-coin.png', title: 'Self-custodial' },
+    { image: 'https://jdptoken.com/jdp-coin.png', title: 'No seed phrase' },
+    { image: 'https://jdptoken.com/jdp-coin.png', title: 'Gasless sends' },
+    { image: 'https://jdptoken.com/jdp-coin.png', title: 'Participation, not speculation' }
   ]
 };

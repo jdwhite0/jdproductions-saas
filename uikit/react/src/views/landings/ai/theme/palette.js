@@ -11,18 +11,18 @@ export function buildPalette() {
 
   const lightPalette = {
     primary: {
-      lighter: '#CCE5FF', // AI/primary/90 - primary container / primary fixed
-      light: '#92CCFF', // AI/primary/80 - primary fixed dim
-      main: '#006397', // AI/primary/40 - primary
-      dark: '#004B73', // AI/primary/30 - on primary fixed variant
-      darker: '#001D31' // AI/primary/10 - on primary container / on primary fixed
+      lighter: '#ECE0FA', // JDP purple container
+      light: '#C9A6EE', // JDP purple fixed dim
+      main: '#7B2FBE', // JDP purple - primary
+      dark: '#5B1E94', // JDP purple dark
+      darker: '#2E0E4D' // JDP purple darkest
     },
     secondary: {
-      lighter: '#D3E4F8', // AI/secondary/90 - secondary container / secondary fixed
-      light: '#B7C8DB', // AI/secondary/80 - secondary fixed dim
-      main: '#4F6070', // AI/secondary/40 - secondary
-      dark: '#384858', // AI/secondary/30 - on secondary fixed variant
-      darker: '#0B1D2B' // AI/secondary/10 - on secondary container / on secondary fixed
+      lighter: '#CFF7F1', // JDP teal container
+      light: '#7FE0D4', // JDP teal fixed dim
+      main: '#00B5A0', // JDP teal - secondary
+      dark: '#00897B', // JDP teal dark
+      darker: '#063B36' // JDP teal darkest
     },
     grey: {
       50: '#F9F9FC', // AI/neutral/98 - surface / surface bright

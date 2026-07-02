@@ -6,38 +6,36 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/material/CircularProgress';
 import { PageHead } from '@/views/member/_ui';
-
-const MEMBERS = [
-  { name: 'Acme Studios', email: 'ops@acme.co', plan: 'GROW', role: 'member', status: 'Active' },
-  { name: 'Northwind Co.', email: 'hi@northwind.co', plan: 'LAUNCH', role: 'member', status: 'Active' },
-  { name: 'JD White', email: 'jd@jdproductions.io', plan: '—', role: 'founder', status: 'Active' }
-];
+import useAdminData from '@/hooks/useAdminData';
 
 export default function FounderAccounts() {
+  const { data, error, isLoading } = useAdminData();
   return (
     <Box>
-      <PageHead eyebrow="Accounts" title="Manage every account." subtitle="Full control — plans, roles, access, and status across all members." />
+      <PageHead eyebrow="Accounts" title="Manage every account." subtitle="Live from Clerk — plans, roles, and activity across all members." />
+      {error && <Alert severity="warning" sx={{ mb: 2 }}>Live data unavailable — check founder role + endpoint.</Alert>}
       <Card variant="outlined" sx={{ borderRadius: 3 }}>
         <CardContent>
-          {MEMBERS.map((m, i) => (
-            <Box key={m.email}>
+          {isLoading && <Stack alignItems="center" sx={{ py: 5 }}><CircularProgress size={26} /></Stack>}
+          {(data?.users || []).map((u, i) => (
+            <Box key={u.id}>
               {i > 0 && <Divider />}
               <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ justifyContent: 'space-between', alignItems: { sm: 'center' }, py: 1.75, gap: 1 }}>
                 <Box>
-                  <Typography variant="body1" sx={{ fontWeight: 600 }}>{m.name}</Typography>
-                  <Typography variant="caption" color="text.secondary">{m.email}</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>{u.name}</Typography>
+                  <Typography variant="caption" color="text.secondary">{u.email} · joined {u.createdAt}</Typography>
                 </Box>
                 <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-                  <Chip label={m.plan} size="small" variant="outlined" />
-                  <Chip label={m.role} size="small" color={m.role === 'founder' ? 'secondary' : 'default'} />
-                  <Chip label={m.status} size="small" color="success" variant="outlined" />
-                  <Button size="small" variant="outlined" color="primary">Manage</Button>
+                  <Chip label={u.plan ? u.plan.toUpperCase() : 'no plan'} size="small" variant="outlined" color={u.plan ? 'primary' : 'default'} />
+                  <Chip label={u.role} size="small" color={u.role !== 'member' ? 'secondary' : 'default'} />
+                  <Button size="small" variant="outlined" color="primary" href={`https://dashboard.clerk.com`} target="_blank">Manage</Button>
                 </Stack>
               </Stack>
             </Box>
           ))}
-          <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>Wires to Clerk Admin API for live user management next.</Typography>
         </CardContent>
       </Card>
     </Box>

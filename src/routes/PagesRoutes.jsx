@@ -8,6 +8,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 // auth
 const LoginPage = Loadable(lazy(() => import('@/views/auth/login')));
 const RegisterPage = Loadable(lazy(() => import('@/views/auth/register')));
+const BridgePage = Loadable(lazy(() => import('@/views/auth/bridge')));
 
 /***************************  PAGES ROUTES  ***************************/
 
@@ -17,7 +18,8 @@ const PagesRoutes = {
   children: [
     { index: true, element: <Navigate to="login" replace /> },
     { path: 'login', element: <LoginPage /> },
-    { path: 'register', element: <RegisterPage /> }
+    { path: 'register', element: <RegisterPage /> },
+    { path: 'bridge', element: <BridgePage /> }
   ]
 };
 

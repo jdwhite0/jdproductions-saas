@@ -1,5 +1,7 @@
 // @next
-import { Archivo, Figtree, Roboto } from 'next/font/google';
+// JDP brand fonts: Space Grotesk (display) + Inter (body). Keeps export names
+// (FONT_ARCHIVO/FONT_FIGTREE) so typography.js stays untouched — see JDP brand guideline.
+import { Space_Grotesk, Inter, Roboto, Orbitron } from 'next/font/google';
 
 export let Themes;
 
@@ -28,9 +30,11 @@ export default config;
 /***************************  THEME - FONT FAMILY  ***************************/
 
 const fontRobot = Roboto({ subsets: ['latin'], weight: ['100', '300', '400', '500', '700', '900'] });
-const fontArchivo = Archivo({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
-const fontFigtree = Figtree({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
+const fontSpaceGrotesk = Space_Grotesk({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
+const fontInter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
+const fontOrbitron = Orbitron({ subsets: ['latin'], weight: ['700', '800', '900'] });
 
 export const FONT_ROBOTO = fontRobot.style.fontFamily;
-export const FONT_ARCHIVO = fontArchivo.style.fontFamily;
-export const FONT_FIGTREE = fontFigtree.style.fontFamily;
+export const FONT_ARCHIVO = fontSpaceGrotesk.style.fontFamily; // display → Space Grotesk
+export const FONT_FIGTREE = fontInter.style.fontFamily; // body → Inter
+export const FONT_ORBITRON = fontOrbitron.style.fontFamily; // JDPay wordmark logo (super bold 900)

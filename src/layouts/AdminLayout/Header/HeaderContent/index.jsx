@@ -6,8 +6,6 @@ import Box from '@mui/material/Box';
 import { UserButton } from '@clerk/clerk-react';
 
 // @project
-import Notification from './Notification';
-import SearchBar from './SearchBar';
 import ThemeModeSwitcher from './ThemeModeSwitcher';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
@@ -21,9 +19,7 @@ export default function HeaderContent() {
           <Breadcrumbs />
         </Box>
         <Stack direction="row" sx={{ alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
-          <SearchBar />
           <ThemeModeSwitcher />
-          <Notification />
           <UserButton afterSignOutUrl="/auth/login" appearance={{ elements: { avatarBox: { width: 36, height: 36 } } }} />
         </Stack>
       </Stack>
